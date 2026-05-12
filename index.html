@@ -21,7 +21,7 @@ header{
   border-bottom:2px solid #222;
 }
 
-/* ÜST BAR */
+/* TOPBAR */
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -116,17 +116,6 @@ header{
   text-align:center;
 }
 
-button{
-  background:#e6b800;
-  border:none;
-  padding:10px;
-  width:100%;
-  margin-top:10px;
-  font-weight:bold;
-  cursor:pointer;
-  border-radius:6px;
-}
-
 /* SEPET */
 #cart{
   position:fixed;
@@ -140,10 +129,10 @@ button{
   overflow:auto;
 }
 
-/* ARAMA SONUÇ MESAJ */
+/* 🔥 MESAJ (DOĞRU YER) */
 #noResult{
   text-align:center;
-  padding:20px;
+  padding:10px;
   color:#aaa;
   display:none;
 }
@@ -166,13 +155,13 @@ button{
 
 <div class="ad-banner">
   <div class="ad-text">
-    <div class="title">REKLAM ALANI</div>
-    <div class="sub">Karınca Shop</div>
+    <div class="title">BU ALANA REKLAM VEREBİLİRSİNİZ</div>
+    <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
   </div>
 </div>
 
-<!-- KATEGORİLER (ASLA ETKİLENMEZ) -->
 <div class="categories">
+  <div class="cat">Saat</div>
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
@@ -184,23 +173,25 @@ button{
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
-  <div class="cat">Oyun</div>
+  <div class="cat">Oyun Konsolu</div>
+  <div class="cat">Aksesuar</div>
 </div>
 
-<!-- ÜRÜNLER -->
-<div class="products" id="productArea">
-
-<div class="card"><h3>iPhone 15</h3><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
-<div class="card"><h3>Samsung S24</h3><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
-<div class="card"><h3>MacBook Pro</h3><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
-<div class="card"><h3>Gaming PC</h3><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
-<div class="card"><h3>AirPods</h3><button onclick="add('AirPods')">Sepete Ekle</button></div>
-
-</div>
-
+<!-- 🔥 ARAMA ALT MESAJ -->
 <div id="noResult">❌ Ürün bulunamadı</div>
 
-<!-- SEPET -->
+<div class="products">
+
+<div class="card"><h3>iPhone 15</h3></div>
+<div class="card"><h3>Samsung S24</h3></div>
+<div class="card"><h3>MacBook Pro</h3></div>
+<div class="card"><h3>Gaming PC</h3></div>
+<div class="card"><h3>AirPods</h3></div>
+<div class="card"><h3>Gaming Mouse</h3></div>
+<div class="card"><h3>RGB Klavye</h3></div>
+
+</div>
+
 <div id="cart">
 <h3>Sepet</h3>
 <ul id="list"></ul>
@@ -224,27 +215,27 @@ function render(){
   });
 }
 
-/* 🔥 GELİŞMİŞ ARAMA SİSTEMİ */
+/* 🔥 ARAMA SİSTEMİ (STABİL) */
 const input = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
 const noResult = document.getElementById("noResult");
 
 function search(){
   let val = input.value.toLowerCase().trim();
-  let visibleCount = 0;
+  let visible = 0;
 
   cards.forEach(card=>{
     let text = card.innerText.toLowerCase();
 
     if(val === "" || text.includes(val)){
       card.style.display = "block";
-      visibleCount++;
+      visible++;
     } else {
       card.style.display = "none";
     }
   });
 
-  noResult.style.display = visibleCount === 0 ? "block" : "none";
+  noResult.style.display = visible === 0 ? "block" : "none";
 }
 
 /* ENTER + LIVE SEARCH */
