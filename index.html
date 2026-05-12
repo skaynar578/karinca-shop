@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Karınca</title>
+<title>Karınca Shop</title>
 
 <style>
 body{
@@ -12,7 +12,6 @@ body{
   color:white;
 }
 
-/* HEADER */
 header{
   background:#000;
   padding:20px;
@@ -22,7 +21,6 @@ header{
   border-bottom:2px solid #222;
 }
 
-/* KATEGORİ BAR */
 .categories{
   display:flex;
   justify-content:center;
@@ -38,7 +36,6 @@ header{
   font-size:12px;
 }
 
-/* ÜRÜN GRID */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -46,18 +43,22 @@ header{
   padding:20px;
 }
 
-/* CARD */
 .card{
   background:#151515;
   padding:15px;
   border-radius:12px;
   text-align:center;
-  box-shadow:0 0 10px rgba(255,255,255,0.03);
   transition:0.2s;
 }
 
 .card:hover{
   transform:scale(1.03);
+}
+
+.price{
+  color:#e6b800;
+  font-weight:bold;
+  margin-top:5px;
 }
 
 button{
@@ -71,13 +72,12 @@ button{
   border-radius:6px;
 }
 
-/* SEPET */
 #cart{
   position:fixed;
   right:10px;
   top:80px;
   background:#111;
-  width:220px;
+  width:240px;
   padding:10px;
   border-radius:10px;
   max-height:80vh;
@@ -105,7 +105,6 @@ button{
 
 <header>🐜 KARINCA SHOP</header>
 
-<!-- KATEGORİLER -->
 <div class="categories">
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
@@ -114,60 +113,66 @@ button{
   <div class="cat">Ev</div>
 </div>
 
-<!-- ÜRÜNLER -->
 <div class="products">
 
-  <div class="card">
-    <h3>iPhone 15</h3>
-    <p>Yeni Nesil</p>
-    <button onclick="add('iPhone 15')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>iPhone 15</h3>
+<p>Yeni Nesil</p>
+<div class="price">42000 TL</div>
+<button onclick="add('iPhone 15',42000)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>Samsung S24</h3>
-    <p>Amiral Gemisi</p>
-    <button onclick="add('Samsung S24')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>Samsung S24</h3>
+<p>Amiral Gemisi</p>
+<div class="price">38000 TL</div>
+<button onclick="add('Samsung S24',38000)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>MacBook Pro</h3>
-    <p>Profesyonel</p>
-    <button onclick="add('MacBook Pro')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>MacBook Pro</h3>
+<p>Profesyonel</p>
+<div class="price">65000 TL</div>
+<button onclick="add('MacBook Pro',65000)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>Gaming PC</h3>
-    <p>Yüksek Performans</p>
-    <button onclick="add('Gaming PC')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>Gaming PC</h3>
+<p>Yüksek Performans</p>
+<div class="price">30000 TL</div>
+<button onclick="add('Gaming PC',30000)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>AirPods</h3>
-    <p>Ses Kalitesi</p>
-    <button onclick="add('AirPods')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>AirPods</h3>
+<p>Ses Kalitesi</p>
+<div class="price">5000 TL</div>
+<button onclick="add('AirPods',5000)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>Gaming Mouse</h3>
-    <p>Hassas Kontrol</p>
-    <button onclick="add('Gaming Mouse')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>Gaming Mouse</h3>
+<p>Hassas Kontrol</p>
+<div class="price">750 TL</div>
+<button onclick="add('Gaming Mouse',750)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>Klavyeler</h3>
-    <p>RGB Işık</p>
-    <button onclick="add('RGB Klavye')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>RGB Klavye</h3>
+<p>Işık Efektli</p>
+<div class="price">1200 TL</div>
+<button onclick="add('RGB Klavye',1200)">Sepete Ekle</button>
+</div>
 
-  <div class="card">
-    <h3>PlayStation 5</h3>
-    <p>Oyun Konsolu</p>
-    <button onclick="add('PS5')">Sepete Ekle</button>
-  </div>
+<div class="card">
+<h3>PlayStation 5</h3>
+<p>Oyun Konsolu</p>
+<div class="price">27000 TL</div>
+<button onclick="add('PS5',27000)">Sepete Ekle</button>
+</div>
 
 </div>
 
-<!-- SEPET -->
 <div id="cart">
 <h3>Sepet</h3>
 <ul id="list"></ul>
@@ -178,24 +183,43 @@ button{
 <script>
 let cart = [];
 
-function add(name){
-  cart.push(name);
+function add(name,price){
+  cart.push({name,price});
   render();
 }
 
 function render(){
   let list = document.getElementById("list");
   list.innerHTML = "";
+  let total = 0;
 
   cart.forEach(i=>{
     let li = document.createElement("li");
-    li.innerText = i;
+    li.innerText = i.name + " - " + i.price + " TL";
     list.appendChild(li);
+    total += i.price;
   });
+
+  document.getElementById("total").innerText = "Toplam: " + total + " TL";
 }
 
 function checkout(){
-  alert("🐜 Sipariş alındı (demo)");
+  if(cart.length == 0){
+    alert("Sepet boş!");
+    return;
+  }
+
+  let mesaj = "Sipariş:\n";
+  cart.forEach(i=>{
+    mesaj += "- " + i.name + " ("+i.price+" TL)\n";
+  });
+
+  let toplam = cart.reduce((t,i)=>t+i.price,0);
+  mesaj += "\nToplam: " + toplam + " TL";
+
+  let url = "https://wa.me/905000000000?text=" + encodeURIComponent(mesaj);
+  window.open(url);
+
   cart = [];
   render();
 }
