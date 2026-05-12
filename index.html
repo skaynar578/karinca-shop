@@ -13,28 +13,42 @@ body{
 }
 
 header{
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#111;border-bottom:1px solid #222;">
-
-  <div style="font-size:20px;font-weight:bold;color:#e6b800;">
-    🐜 Karınca Shop
-  </div>
-
-  <input placeholder="Ürün ara..." 
-  style="width:40%;padding:8px;border-radius:6px;border:none;outline:none;">
-
-  <div style="display:flex;gap:10px;font-size:12px;">
-    <div>Giriş Yap</div>
-    <div>Favoriler</div>
-    <div>Sepet</div>
-  </div>
-
-</div>
   background:#000;
   padding:20px;
   text-align:center;
   font-size:26px;
   font-weight:bold;
   border-bottom:2px solid #222;
+}
+
+/* 🔥 ÜST BAR (EKLENDİ) */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 15px;
+  background:#111;
+  border-bottom:1px solid #222;
+}
+
+.topbar .logo{
+  color:#e6b800;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.topbar input{
+  width:40%;
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  outline:none;
+}
+
+.topbar .menu{
+  font-size:12px;
+  display:flex;
+  gap:10px;
 }
 
 /* REKLAM VİDEO */
@@ -52,7 +66,6 @@ header{
   object-fit:cover;
 }
 
-/* ÜST YAZI */
 .ad-text{
   position:absolute;
   top:0;
@@ -76,15 +89,8 @@ header{
   font-size:12px;
   color:#ccc;
 }
-<div style="display:flex;justify-content:center;gap:20px;padding:8px;background:#0f0f0f;font-size:11px;color:#aaa;">
 
-  <div>🚚 Hızlı Kargo</div>
-  <div>🔒 Güvenli Alışveriş</div>
-  <div>💳 Kapıda Ödeme</div>
-  <div>📦 İade Garantisi</div>
-
-</div>
-/* KATEGORİLER (GÜNCELLENDİ) */
+/* KATEGORİLER */
 .categories{
   display:flex;
   flex-wrap:wrap;
@@ -136,7 +142,7 @@ button{
 #cart{
   position:fixed;
   right:10px;
-  top:80px;
+  top:120px;
   background:#111;
   width:240px;
   padding:10px;
@@ -151,42 +157,53 @@ button{
 
 <header>🐜 KARINCA</header>
 
-<!-- VİDEO REKLAM -->
+<!-- 🔥 ÜST BAR EKLENDİ -->
+<div class="topbar">
+  <div class="logo">Karınca Shop</div>
+  <input placeholder="Ürün ara...">
+  <div class="menu">
+    <div>Giriş</div>
+    <div>Favoriler</div>
+    <div>Sepet</div>
+  </div>
+</div>
+
+<!-- VİDEO REKLAM (FIX) -->
 <div class="ad-banner">
 
+  <video autoplay muted loop playsinline>
+    <source src="./BELALI.YARIM.TANITIM.mp4" type="video/mp4">
+  </video>
 
+  <div class="ad-text">
+    <div class="title">SİYAH ALTIN PRODÜKSİYON</div>
+    <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
+  </div>
 
 </div>
 
+<!-- KATEGORİLER -->
 <div class="categories">
 
-  <!-- ÖZEL ALANLAR -->
   <div class="cat">Takı</div>
-  <div class="cat">Bujiteri</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
 
-<!-- MODA SERİSİ -->
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
 
-  
-  <!-- ANA TEKNOLOJİ -->
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
   <div class="cat">Oyun Konsolu</div>
   <div class="cat">Aksesuar</div>
 
-
-  <!-- YAŞAM -->
   <div class="cat">Ev & Yaşam</div>
   <div class="cat">Ayakkabı</div>
   <div class="cat">Spor</div>
- 
 
 </div>
 
