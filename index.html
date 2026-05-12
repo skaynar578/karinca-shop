@@ -37,14 +37,6 @@ header{
   font-size:18px;
 }
 
-.topbar input{
-  width:40%;
-  padding:8px;
-  border:none;
-  border-radius:6px;
-  outline:none;
-}
-
 .topbar .menu{
   font-size:12px;
   display:flex;
@@ -74,8 +66,15 @@ header{
   font-weight:bold;
 }
 
-.ad-text .title{color:#e6b800;font-size:18px;}
-.ad-text .sub{font-size:12px;color:#ccc;}
+.ad-text .title{
+  color:#e6b800;
+  font-size:18px;
+}
+
+.ad-text .sub{
+  font-size:12px;
+  color:#ccc;
+}
 
 /* CATEGORIES */
 .categories{
@@ -92,6 +91,7 @@ header{
   background:#1c1c1c;
   border-radius:20px;
   font-size:12px;
+  cursor:pointer;
 }
 
 /* PRODUCTS */
@@ -110,7 +110,9 @@ header{
   transition:0.2s;
 }
 
-.card:hover{transform:scale(1.03);}
+.card:hover{
+  transform:scale(1.03);
+}
 
 button{
   background:#e6b800;
@@ -123,7 +125,7 @@ button{
   border-radius:6px;
 }
 
-/* SEPET */
+/* CART */
 #cart{
   position:fixed;
   right:10px;
@@ -135,15 +137,6 @@ button{
   max-height:80vh;
   overflow:auto;
 }
-
-/* ❌ BULUNAMADI YAZISI (ARAMA ALTINA) */
-#notFound{
-  text-align:center;
-  color:#ff4d4d;
-  font-weight:bold;
-  margin-top:10px;
-  display:none;
-}
 </style>
 </head>
 
@@ -153,7 +146,6 @@ button{
 
 <div class="topbar">
   <div class="logo">Karınca Shop</div>
-  <input id="searchInput" placeholder="Ürün ara...">
   <div class="menu">
     <div>Giriş</div>
     <div>Favoriler</div>
@@ -163,27 +155,34 @@ button{
 
 <div class="ad-banner">
   <div class="ad-text">
-    <div class="title">REKLAM</div>
-    <div class="sub">Karınca Shop</div>
+    <div class="title">BU ALANA REKLAM VEREBİLİRSİNİZ</div>
+    <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
   </div>
 </div>
 
 <div class="categories">
+
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
+
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
+
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
-</div>
+  <div class="cat">Oyun Konsolu</div>
+  <div class="cat">Aksesuar</div>
 
-<!-- ARAMA ALTINA YAZI -->
-<div id="notFound">❌ Ürün bulunamadı</div>
+  <div class="cat">Ev & Yaşam</div>
+  <div class="cat">Ayakkabı</div>
+  <div class="cat">Spor</div>
+
+</div>
 
 <div class="products">
 
@@ -219,41 +218,6 @@ function render(){
     list.appendChild(li);
   });
 }
-
-/* 🔥 ARAMA FIX + ENTER FIX */
-const input = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".card");
-const notFound = document.getElementById("notFound");
-
-function search(){
-  let val = input.value.toLowerCase();
-  let visibleCount = 0;
-
-  cards.forEach(card=>{
-    let text = card.innerText.toLowerCase();
-
-    if(text.includes(val)){
-      card.style.display = "block";
-      visibleCount++;
-    }else{
-      card.style.display = "none";
-    }
-  });
-
-  // ❌ mesaj kontrol
-  notFound.style.display = visibleCount === 0 ? "block" : "none";
-}
-
-/* yazarken filtre */
-input.addEventListener("input", search);
-
-/* ENTER BOZMASIN */
-input.addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    e.preventDefault();
-    search();
-  }
-});
 </script>
 
 </body>
