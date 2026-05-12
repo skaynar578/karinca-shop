@@ -37,7 +37,6 @@ header{
   font-size:18px;
 }
 
-/* 🔥 SADECE BURASI DEĞİŞTİ */
 .topbar input{
   width:40%;
   padding:8px;
@@ -158,13 +157,10 @@ button{
 
 <header>🐜 KARINCA</header>
 
-<!-- ÜST BAR -->
+<!-- 🔥 ÜST BAR -->
 <div class="topbar">
   <div class="logo">Karınca Shop</div>
-
-  <!-- 🔥 ID EKLENDİ -->
   <input id="searchInput" placeholder="Ürün ara...">
-
   <div class="menu">
     <div>Giriş</div>
     <div>Favoriler</div>
@@ -174,33 +170,36 @@ button{
 
 <!-- VİDEO REKLAM -->
 <div class="ad-banner">
-
   <div class="ad-text">
     <div class="title">REKLAMINIZI BURAYA VEREBİLİRSİNİZ</div>
     <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
   </div>
-
 </div>
 
 <!-- KATEGORİLER -->
 <div class="categories">
+
   <div class="cat">Saat</div>
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
+
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
+
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
   <div class="cat">Oyun Konsolu</div>
   <div class="cat">Aksesuar</div>
+
   <div class="cat">Ev & Yaşam</div>
   <div class="cat">Ayakkabı</div>
   <div class="cat">Spor</div>
+
 </div>
 
 <!-- ÜRÜNLER -->
@@ -281,21 +280,11 @@ function render(){
   });
 }
 
-/* 🔥 ENTER İLE ARAMA EKLENDİ */
+/* 🔥 ENTER EKLENDİ (ARAMA KUTUSU) */
 document.getElementById("searchInput").addEventListener("keydown", function(e){
   if(e.key === "Enter"){
-    let value = this.value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card=>{
-      let text = card.innerText.toLowerCase();
-
-      if(text.includes(value)){
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
+    e.preventDefault();
+    this.blur(); // sadece onay gibi çalışır
   }
 });
 </script>
