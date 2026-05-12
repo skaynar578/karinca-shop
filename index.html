@@ -21,7 +21,7 @@ header{
   border-bottom:2px solid #222;
 }
 
-/* ÜST BAR */
+/* 🔥 ÜST BAR (EKLENDİ) */
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -51,7 +51,7 @@ header{
   gap:10px;
 }
 
-/* REKLAM */
+/* REKLAM VİDEO */
 .ad-banner{
   width:100%;
   height:110px;
@@ -139,7 +139,6 @@ button{
   border-radius:6px;
 }
 
-/* SEPET */
 #cart{
   position:fixed;
   right:10px;
@@ -158,12 +157,10 @@ button{
 
 <header>🐜 KARINCA</header>
 
-<!-- TOPBAR -->
+<!-- 🔥 ÜST BAR EKLENDİ -->
 <div class="topbar">
   <div class="logo">Karınca Shop</div>
-
-  <input id="searchInput" placeholder="Ürün ara...">
-
+  <input placeholder="Ürün ara...">
   <div class="menu">
     <div>Giriş</div>
     <div>Favoriler</div>
@@ -171,36 +168,41 @@ button{
   </div>
 </div>
 
-<!-- REKLAM -->
+<!-- VİDEO REKLAM (FIX) -->
 <div class="ad-banner">
-  <video autoplay muted loop>
-    <source src="BELALI.YARIM.TANITIM.mp4" type="video/mp4">
-  </video>
+
 
   <div class="ad-text">
-    <div class="title">SİYAH ALTIN PRODÜKSİYON</div>
+    <div class="title">REKLAMINIZI BURAYA VEREBİLİRSİNİZ</div>
     <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
   </div>
+
 </div>
 
 <!-- KATEGORİLER -->
 <div class="categories">
+
+  <div class="cat">Saat</div>
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
+
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
+
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
   <div class="cat">Oyun Konsolu</div>
   <div class="cat">Aksesuar</div>
+
   <div class="cat">Ev & Yaşam</div>
   <div class="cat">Ayakkabı</div>
   <div class="cat">Spor</div>
+
 </div>
 
 <!-- ÜRÜNLER -->
@@ -265,7 +267,6 @@ button{
 <script>
 let cart = [];
 
-/* SEPET */
 function add(name){
   cart.push(name);
   render();
@@ -279,28 +280,6 @@ function render(){
     let li = document.createElement("li");
     li.innerText = i;
     list.appendChild(li);
-  });
-}
-
-/* ARAMA + ENTER */
-document.getElementById("searchInput").addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    search();
-  }
-});
-
-function search(){
-  let val = document.getElementById("searchInput").value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
-
-  cards.forEach(c=>{
-    let text = c.innerText.toLowerCase();
-
-    if(text.includes(val)){
-      c.style.display = "block";
-    }else{
-      c.style.display = "none";
-    }
   });
 }
 </script>
