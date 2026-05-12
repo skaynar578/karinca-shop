@@ -157,7 +157,6 @@ button{
 
 <header>🐜 KARINCA</header>
 
-<!-- 🔥 ÜST BAR -->
 <div class="topbar">
   <div class="logo">Karınca Shop</div>
   <input id="searchInput" placeholder="Ürün ara...">
@@ -168,7 +167,6 @@ button{
   </div>
 </div>
 
-<!-- VİDEO REKLAM -->
 <div class="ad-banner">
   <div class="ad-text">
     <div class="title">BU ALANA REKLAM VEREBİLİRSİNİZ</div>
@@ -176,7 +174,6 @@ button{
   </div>
 </div>
 
-<!-- KATEGORİLER -->
 <div class="categories">
 
   <div class="cat">Saat</div>
@@ -202,60 +199,19 @@ button{
 
 </div>
 
-<!-- ÜRÜNLER -->
 <div class="products">
 
-<div class="card">
-<h3>iPhone 15</h3>
-<p>Yeni Nesil</p>
-<button onclick="add('iPhone 15')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>Samsung S24</h3>
-<p>Amiral Gemisi</p>
-<button onclick="add('Samsung S24')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>MacBook Pro</h3>
-<p>Profesyonel</p>
-<button onclick="add('MacBook Pro')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>Gaming PC</h3>
-<p>Yüksek Performans</p>
-<button onclick="add('Gaming PC')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>AirPods</h3>
-<p>Ses Kalitesi</p>
-<button onclick="add('AirPods')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>Gaming Mouse</h3>
-<p>Hassas Kontrol</p>
-<button onclick="add('Gaming Mouse')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>RGB Klavye</h3>
-<p>Işık Efektli</p>
-<button onclick="add('RGB Klavye')">Sepete Ekle</button>
-</div>
-
-<div class="card">
-<h3>PlayStation 5</h3>
-<p>Oyun Konsolu</p>
-<button onclick="add('PS5')">Sepete Ekle</button>
-</div>
+<div class="card"><h3>iPhone 15</h3><p>Yeni Nesil</p><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
+<div class="card"><h3>Samsung S24</h3><p>Amiral Gemisi</p><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
+<div class="card"><h3>MacBook Pro</h3><p>Profesyonel</p><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming PC</h3><p>Yüksek Performans</p><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
+<div class="card"><h3>AirPods</h3><p>Ses Kalitesi</p><button onclick="add('AirPods')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming Mouse</h3><p>Hassas Kontrol</p><button onclick="add('Gaming Mouse')">Sepete Ekle</button></div>
+<div class="card"><h3>RGB Klavye</h3><p>Işık Efektli</p><button onclick="add('RGB Klavye')">Sepete Ekle</button></div>
+<div class="card"><h3>PlayStation 5</h3><p>Oyun Konsolu</p><button onclick="add('PS5')">Sepete Ekle</button></div>
 
 </div>
 
-<!-- SEPET -->
 <div id="cart">
 <h3>Sepet</h3>
 <ul id="list"></ul>
@@ -272,7 +228,6 @@ function add(name){
 function render(){
   let list = document.getElementById("list");
   list.innerHTML = "";
-
   cart.forEach(i=>{
     let li = document.createElement("li");
     li.innerText = i;
@@ -280,11 +235,25 @@ function render(){
   });
 }
 
-/* 🔥 ENTER EKLENDİ (ARAMA KUTUSU) */
-document.getElementById("searchInput").addEventListener("keydown", function(e){
+/* ✅ ARAMA + ENTER SİSTEMİ */
+const input = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".card");
+
+function search(){
+  let val = input.value.toLowerCase();
+
+  cards.forEach(card=>{
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(val) ? "block" : "none";
+  });
+}
+
+input.addEventListener("keyup", function(e){
+  search();
+
   if(e.key === "Enter"){
     e.preventDefault();
-    this.blur(); // sadece onay gibi çalışır
+    search();
   }
 });
 </script>
