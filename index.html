@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Karınca</title>
+<title>Karınca Shop</title>
 
 <style>
 body{
@@ -19,10 +18,9 @@ header{
   text-align:center;
   font-size:26px;
   font-weight:bold;
-  border-bottom:2px solid #222;
 }
 
-.products{
+.container{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
@@ -31,22 +29,19 @@ header{
 }
 
 .card{
-  background:#151515;
+  background:#1c1c1c;
   width:200px;
   padding:15px;
   border-radius:10px;
-  text-align:center;
-  box-shadow:0 0 10px rgba(255,255,255,0.05);
 }
 
 button{
-  background:#e6b800;
-  border:none;
-  padding:10px;
   width:100%;
-  margin-top:10px;
-  font-weight:bold;
+  padding:10px;
+  background:gold;
+  border:none;
   cursor:pointer;
+  font-weight:bold;
 }
 
 #cart{
@@ -54,25 +49,22 @@ button{
   right:10px;
   top:80px;
   background:#111;
+  padding:10px;
   width:220px;
-  padding:10px;
   border-radius:10px;
-  max-height:80vh;
-  overflow:auto;
 }
 
-#total{
-  margin-top:10px;
-  font-weight:bold;
-  color:#e6b800;
+input{
+  width:90%;
+  padding:8px;
+  margin:5px;
 }
 
-.checkout{
-  background:#1f1f1f;
+.admin{
+  background:#111;
   padding:10px;
-  margin-top:10px;
-  cursor:pointer;
-  text-align:center;
+  margin:20px;
+  border-radius:10px;
 }
 </style>
 </head>
@@ -81,75 +73,85 @@ button{
 
 <header>🐜 KARINCA SHOP</header>
 
-<div class="products">
-
-  <div class="card">
-    <h3>Telefon</h3>
-    <p>12000 TL</p>
-    <button onclick="add('Telefon',12000)">Sepete Ekle</button>
-  </div>
-
-  <div class="card">
-    <h3>Kulaklık</h3>
-    <p>500 TL</p>
-    <button onclick="add('Kulaklık',500)">Sepete Ekle</button>
-  </div>
-
-  <div class="card">
-    <h3>Mouse</h3>
-    <p>300 TL</p>
-    <button onclick="add('Mouse',300)">Sepete Ekle</button>
-  </div>
-
-  <div class="card">
-    <h3>Klavye</h3>
-    <p>800 TL</p>
-    <button onclick="add('Klavye',800)">Sepete Ekle</button>
-  </div>
-
+<!-- ADMIN PANEL -->
+<div class="admin">
+<h3>Admin Panel (Ürün Ekle)</h3>
+<input id="name" placeholder="Ürün adı">
+<input id="price" placeholder="Fiyat">
+<button onclick="addProduct()">Ürün Ekle</button>
 </div>
 
+<!-- ÜRÜNLER -->
+<div class="container" id="products"></div>
+
+<!-- SEPET -->
 <div id="cart">
 <h3>Sepet</h3>
 <ul id="list"></ul>
-<div id="total">Toplam: 0 TL</div>
-<div class="checkout" onclick="checkout()">SİPARİŞ VER</div>
+<p id="total">Toplam: 0 TL</p>
 </div>
 
 <script>
+let products = JSON.parse(localStorage.getItem("products")) || [
+  {id:1, name:"Telefon", price:12000},
+  {id:2, name:"Kulaklık", price:500}
+];
+
 let cart = [];
 let total = 0;
 
-function add(name, price){
-  cart.push({name, price});
-  total += price;
-  render();
+function renderProducts(){
+  let box = document.getElementById("products");
+  box.innerHTML = "";
+
+  products.forEach(p=>{
+    box.innerHTML += `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p>${p.price} TL</p>
+        <button onclick="add(${p.id})">Sepete Ekle</button>
+      </div>
+    `;
+  });
 }
 
-function render(){
+function add(id){
+  let item = products.find(p=>p.id===id);
+  cart.push(item);
+  total += item.price;
+  renderCart();
+}
+
+function renderCart(){
   let list = document.getElementById("list");
   list.innerHTML = "";
 
-  cart.forEach(item=>{
+  cart.forEach(c=>{
     let li = document.createElement("li");
-    li.innerText = item.name + " - " + item.price + " TL";
+    li.innerText = c.name + " - " + c.price + " TL";
     list.appendChild(li);
   });
 
   document.getElementById("total").innerText = "Toplam: " + total + " TL";
 }
 
-function checkout(){
-  if(cart.length === 0){
-    alert("Sepet boş!");
-    return;
-  }
+function addProduct(){
+  let name = document.getElementById("name").value;
+  let price = parseInt(document.getElementById("price").value);
 
-  alert("🐜 Sipariş alındı! (Simülasyon)");
-  cart = [];
-  total = 0;
-  render();
+  let newProduct = {
+    id: Date.now(),
+    name,
+    price
+  };
+
+  products.push(newProduct);
+  localStorage.setItem("products", JSON.stringify(products));
+
+  renderProducts();
 }
+
+renderProducts();
 </script>
 
 </body>
