@@ -209,7 +209,6 @@ button{
 <div class="card"><h3>Gaming Mouse</h3><p>Hassas Kontrol</p><button onclick="add('Gaming Mouse')">Sepete Ekle</button></div>
 <div class="card"><h3>RGB Klavye</h3><p>Işık Efektli</p><button onclick="add('RGB Klavye')">Sepete Ekle</button></div>
 
-
 </div>
 
 <div id="cart">
@@ -235,7 +234,7 @@ function render(){
   });
 }
 
-/* ✅ ARAMA + ENTER SİSTEMİ */
+/* 🔥 ENTER FIX (KATEGORİLER KAYBOLMASIN DİYE) */
 const input = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
 
@@ -248,14 +247,16 @@ function search(){
   });
 }
 
-input.addEventListener("keyup", function(e){
-  search();
-
+/* ENTER SADECE DURDURUR, FİLTRE BOZMAZ */
+input.addEventListener("keydown", function(e){
   if(e.key === "Enter"){
-    e.preventDefault();
-    search();
+    e.preventDefault();   // SAYFA DAVRANIŞINI ENGELLER
+    search();             // sadece filtre uygular
   }
 });
+
+/* YAZARKEN ANINDA ARAMA */
+input.addEventListener("input", search);
 </script>
 
 </body>
