@@ -51,7 +51,7 @@ header{
   gap:10px;
 }
 
-/* REKLAM */
+/* AD */
 .ad-banner{
   width:100%;
   height:110px;
@@ -74,17 +74,10 @@ header{
   font-weight:bold;
 }
 
-.ad-text .title{
-  color:#e6b800;
-  font-size:18px;
-}
+.ad-text .title{color:#e6b800;font-size:18px;}
+.ad-text .sub{font-size:12px;color:#ccc;}
 
-.ad-text .sub{
-  font-size:12px;
-  color:#ccc;
-}
-
-/* KATEGORİLER */
+/* CATEGORIES */
 .categories{
   display:flex;
   flex-wrap:wrap;
@@ -101,7 +94,7 @@ header{
   font-size:12px;
 }
 
-/* ÜRÜNLER */
+/* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -114,6 +107,20 @@ header{
   padding:15px;
   border-radius:12px;
   text-align:center;
+  transition:0.2s;
+}
+
+.card:hover{transform:scale(1.03);}
+
+button{
+  background:#e6b800;
+  border:none;
+  padding:10px;
+  width:100%;
+  margin-top:10px;
+  font-weight:bold;
+  cursor:pointer;
+  border-radius:6px;
 }
 
 /* SEPET */
@@ -129,11 +136,12 @@ header{
   overflow:auto;
 }
 
-/* 🔥 MESAJ (DOĞRU YER) */
-#noResult{
+/* ❌ BULUNAMADI YAZISI (ARAMA ALTINA) */
+#notFound{
   text-align:center;
-  padding:10px;
-  color:#aaa;
+  color:#ff4d4d;
+  font-weight:bold;
+  margin-top:10px;
   display:none;
 }
 </style>
@@ -155,13 +163,12 @@ header{
 
 <div class="ad-banner">
   <div class="ad-text">
-    <div class="title">BU ALANA REKLAM VEREBİLİRSİNİZ</div>
-    <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
+    <div class="title">REKLAM</div>
+    <div class="sub">Karınca Shop</div>
   </div>
 </div>
 
 <div class="categories">
-  <div class="cat">Saat</div>
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
@@ -173,22 +180,20 @@ header{
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
-  <div class="cat">Oyun Konsolu</div>
-  <div class="cat">Aksesuar</div>
 </div>
 
-<!-- 🔥 ARAMA ALT MESAJ -->
-<div id="noResult">❌ Ürün bulunamadı</div>
+<!-- ARAMA ALTINA YAZI -->
+<div id="notFound">❌ Ürün bulunamadı</div>
 
 <div class="products">
 
-<div class="card"><h3>iPhone 15</h3></div>
-<div class="card"><h3>Samsung S24</h3></div>
-<div class="card"><h3>MacBook Pro</h3></div>
-<div class="card"><h3>Gaming PC</h3></div>
-<div class="card"><h3>AirPods</h3></div>
-<div class="card"><h3>Gaming Mouse</h3></div>
-<div class="card"><h3>RGB Klavye</h3></div>
+<div class="card"><h3>iPhone 15</h3><p>Yeni Nesil</p><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
+<div class="card"><h3>Samsung S24</h3><p>Amiral Gemisi</p><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
+<div class="card"><h3>MacBook Pro</h3><p>Profesyonel</p><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming PC</h3><p>Yüksek Performans</p><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
+<div class="card"><h3>AirPods</h3><p>Ses Kalitesi</p><button onclick="add('AirPods')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming Mouse</h3><p>Hassas Kontrol</p><button onclick="add('Gaming Mouse')">Sepete Ekle</button></div>
+<div class="card"><h3>RGB Klavye</h3><p>Işık Efektli</p><button onclick="add('RGB Klavye')">Sepete Ekle</button></div>
 
 </div>
 
@@ -215,38 +220,40 @@ function render(){
   });
 }
 
-/* 🔥 ARAMA SİSTEMİ (STABİL) */
+/* 🔥 ARAMA FIX + ENTER FIX */
 const input = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
-const noResult = document.getElementById("noResult");
+const notFound = document.getElementById("notFound");
 
 function search(){
-  let val = input.value.toLowerCase().trim();
-  let visible = 0;
+  let val = input.value.toLowerCase();
+  let visibleCount = 0;
 
   cards.forEach(card=>{
     let text = card.innerText.toLowerCase();
 
-    if(val === "" || text.includes(val)){
+    if(text.includes(val)){
       card.style.display = "block";
-      visible++;
-    } else {
+      visibleCount++;
+    }else{
       card.style.display = "none";
     }
   });
 
-  noResult.style.display = visible === 0 ? "block" : "none";
+  // ❌ mesaj kontrol
+  notFound.style.display = visibleCount === 0 ? "block" : "none";
 }
 
-/* ENTER + LIVE SEARCH */
+/* yazarken filtre */
+input.addEventListener("input", search);
+
+/* ENTER BOZMASIN */
 input.addEventListener("keydown", function(e){
   if(e.key === "Enter"){
     e.preventDefault();
     search();
   }
 });
-
-input.addEventListener("input", search);
 </script>
 
 </body>
