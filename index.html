@@ -6,32 +6,30 @@
 
 <style>
 body{
-  margin:0;
   font-family:Arial;
   background:#0b0b0b;
   color:white;
 }
 
 header{
-  background:#000;
-  padding:20px;
   text-align:center;
-  font-size:26px;
-  font-weight:bold;
+  padding:20px;
+  font-size:24px;
+  background:black;
 }
 
 .container{
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
   gap:15px;
+  justify-content:center;
   padding:20px;
 }
 
 .card{
   background:#1c1c1c;
-  width:200px;
   padding:15px;
+  width:200px;
   border-radius:10px;
 }
 
@@ -41,67 +39,22 @@ button{
   background:gold;
   border:none;
   cursor:pointer;
-  font-weight:bold;
-}
-
-#cart{
-  position:fixed;
-  right:10px;
-  top:80px;
-  background:#111;
-  padding:10px;
-  width:220px;
-  border-radius:10px;
-}
-
-input{
-  width:90%;
-  padding:8px;
-  margin:5px;
-}
-
-.admin{
-  background:#111;
-  padding:10px;
-  margin:20px;
-  border-radius:10px;
 }
 </style>
+
+<script src="data.js"></script>
+
 </head>
 
 <body>
 
 <header>🐜 KARINCA SHOP</header>
 
-<!-- ADMIN PANEL -->
-<div class="admin">
-<h3>Admin Panel (Ürün Ekle)</h3>
-<input id="name" placeholder="Ürün adı">
-<input id="price" placeholder="Fiyat">
-<button onclick="addProduct()">Ürün Ekle</button>
-</div>
-
-<!-- ÜRÜNLER -->
-<div class="container" id="products"></div>
-
-<!-- SEPET -->
-<div id="cart">
-<h3>Sepet</h3>
-<ul id="list"></ul>
-<p id="total">Toplam: 0 TL</p>
-</div>
+<div class="container" id="list"></div>
 
 <script>
-let products = JSON.parse(localStorage.getItem("products")) || [
-  {id:1, name:"Telefon", price:12000},
-  {id:2, name:"Kulaklık", price:500}
-];
-
-let cart = [];
-let total = 0;
-
-function renderProducts(){
-  let box = document.getElementById("products");
+function render(){
+  let box = document.getElementById("list");
   box.innerHTML = "";
 
   products.forEach(p=>{
@@ -109,49 +62,18 @@ function renderProducts(){
       <div class="card">
         <h3>${p.name}</h3>
         <p>${p.price} TL</p>
-        <button onclick="add(${p.id})">Sepete Ekle</button>
+        <button onclick="addToCart(${p.id})">Sepete Ekle</button>
       </div>
     `;
   });
 }
 
-function add(id){
+function addToCart(id){
   let item = products.find(p=>p.id===id);
-  cart.push(item);
-  total += item.price;
-  renderCart();
+  alert(item.name + " sepete eklendi 🐜");
 }
 
-function renderCart(){
-  let list = document.getElementById("list");
-  list.innerHTML = "";
-
-  cart.forEach(c=>{
-    let li = document.createElement("li");
-    li.innerText = c.name + " - " + c.price + " TL";
-    list.appendChild(li);
-  });
-
-  document.getElementById("total").innerText = "Toplam: " + total + " TL";
-}
-
-function addProduct(){
-  let name = document.getElementById("name").value;
-  let price = parseInt(document.getElementById("price").value);
-
-  let newProduct = {
-    id: Date.now(),
-    name,
-    price
-  };
-
-  products.push(newProduct);
-  localStorage.setItem("products", JSON.stringify(products));
-
-  renderProducts();
-}
-
-renderProducts();
+render();
 </script>
 
 </body>
