@@ -1,89 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Karınca</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b0b0b;
+  color:white;
+}
+
+header{
+  background:#000;
+  padding:20px;
+  text-align:center;
+  font-size:26px;
+  font-weight:bold;
+  border-bottom:2px solid #222;
+}
+
+.categories{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
+  background:#111;
+}
+
+.cat{
+  padding:8px 12px;
+  background:#1c1c1c;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card{
+  background:#151515;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+button{
+  background:#e6b800;
+  border:none;
+  padding:10px;
+  width:100%;
+  margin-top:10px;
+  font-weight:bold;
+  cursor:pointer;
+  border-radius:6px;
+}
+
+#cart{
+  position:fixed;
+  right:10px;
+  top:80px;
+  background:#111;
+  width:240px;
+  padding:10px;
+  border-radius:10px;
+  max-height:80vh;
+  overflow:auto;
+}
+</style>
+</head>
+
+<body>
+
+<header>🐜 KARINCA</header>
+
+<div class="categories">
+  <div class="cat">Telefon</div>
+  <div class="cat">Bilgisayar</div>
+  <div class="cat">Aksesuar</div>
+  <div class="cat">Oyun</div>
+  <div class="cat">Ev</div>
+</div>
+
+<div class="products">
+
 <div class="card">
-<h3>Xiaomi Telefon</h3>
-<p>Uygun Fiyat</p>
-<button onclick="add('Xiaomi Telefon')">Sepete Ekle</button>
+<h3>iPhone 15</h3>
+<p>Yeni Nesil</p>
+<button onclick="add('iPhone 15')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Huawei Tablet</h3>
-<p>Taşınabilir</p>
-<button onclick="add('Huawei Tablet')">Sepete Ekle</button>
+<h3>Samsung S24</h3>
+<p>Amiral Gemisi</p>
+<button onclick="add('Samsung S24')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Dizüstü Laptop</h3>
-<p>Günlük Kullanım</p>
-<button onclick="add('Dizüstü Laptop')">Sepete Ekle</button>
+<h3>MacBook Pro</h3>
+<p>Profesyonel</p>
+<button onclick="add('MacBook Pro')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Oyuncu Kulaklığı</h3>
-<p>Net Ses</p>
-<button onclick="add('Oyuncu Kulaklığı')">Sepete Ekle</button>
+<h3>Gaming PC</h3>
+<p>Yüksek Performans</p>
+<button onclick="add('Gaming PC')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Bluetooth Hoparlör</h3>
-<p>Yüksek Ses</p>
-<button onclick="add('Bluetooth Hoparlör')">Sepete Ekle</button>
+<h3>AirPods</h3>
+<p>Ses Kalitesi</p>
+<button onclick="add('AirPods')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Akıllı Saat</h3>
-<p>Spor Takip</p>
-<button onclick="add('Akıllı Saat')">Sepete Ekle</button>
+<h3>Gaming Mouse</h3>
+<p>Hassas Kontrol</p>
+<button onclick="add('Gaming Mouse')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>Powerbank</h3>
-<p>Hızlı Şarj</p>
-<button onclick="add('Powerbank')">Sepete Ekle</button>
+<h3>RGB Klavye</h3>
+<p>Işık Efektli</p>
+<button onclick="add('RGB Klavye')">Sepete Ekle</button>
 </div>
 
 <div class="card">
-<h3>USB Bellek</h3>
-<p>128GB</p>
-<button onclick="add('USB Bellek')">Sepete Ekle</button>
+<h3>PlayStation 5</h3>
+<p>Oyun Konsolu</p>
+<button onclick="add('PS5')">Sepete Ekle</button>
 </div>
 
-<div class="card">
-<h3>SSD Disk</h3>
-<p>Yüksek Hız</p>
-<button onclick="add('SSD Disk')">Sepete Ekle</button>
 </div>
 
-<div class="card">
-<h3>Monitör</h3>
-<p>Full HD</p>
-<button onclick="add('Monitör')">Sepete Ekle</button>
+<div id="cart">
+<h3>Sepet</h3>
+<ul id="list"></ul>
 </div>
 
-<div class="card">
-<h3>Webcam</h3>
-<p>HD Görüntü</p>
-<button onclick="add('Webcam')">Sepete Ekle</button>
-</div>
+<script>
+let cart = [];
 
-<div class="card">
-<h3>Router</h3>
-<p>Hızlı İnternet</p>
-<button onclick="add('Router')">Sepete Ekle</button>
-</div>
+function add(name){
+  cart.push(name);
+  render();
+}
 
-<div class="card">
-<h3>Oyuncu Koltuğu</h3>
-<p>Rahat</p>
-<button onclick="add('Oyuncu Koltuğu')">Sepete Ekle</button>
-</div>
+function render(){
+  let list = document.getElementById("list");
+  list.innerHTML = "";
 
-<div class="card">
-<h3>Masa Lambası</h3>
-<p>LED Işık</p>
-<button onclick="add('Masa Lambası')">Sepete Ekle</button>
-</div>
+  cart.forEach(i=>{
+    let li = document.createElement("li");
+    li.innerText = i;
+    list.appendChild(li);
+  });
+}
+</script>
 
-<div class="card">
-<h3>Akıllı Priz</h3>
-<p>Kontrollü</p>
-<button onclick="add('Akıllı Priz')">Sepete Ekle</button>
-</div>
+</body>
+</html>
