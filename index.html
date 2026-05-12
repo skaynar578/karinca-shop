@@ -21,7 +21,7 @@ header{
   border-bottom:2px solid #222;
 }
 
-/* 🔥 ÜST BAR (EKLENDİ) */
+/* ÜST BAR */
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -51,19 +51,13 @@ header{
   gap:10px;
 }
 
-/* REKLAM VİDEO */
+/* REKLAM */
 .ad-banner{
   width:100%;
   height:110px;
   position:relative;
   overflow:hidden;
   border-bottom:1px solid #222;
-}
-
-.ad-banner video{
-  width:100%;
-  height:110px;
-  object-fit:cover;
 }
 
 .ad-text{
@@ -105,7 +99,6 @@ header{
   background:#1c1c1c;
   border-radius:20px;
   font-size:12px;
-  cursor:pointer;
 }
 
 /* ÜRÜNLER */
@@ -121,11 +114,6 @@ header{
   padding:15px;
   border-radius:12px;
   text-align:center;
-  transition:0.2s;
-}
-
-.card:hover{
-  transform:scale(1.03);
 }
 
 button{
@@ -139,6 +127,7 @@ button{
   border-radius:6px;
 }
 
+/* SEPET */
 #cart{
   position:fixed;
   right:10px;
@@ -149,6 +138,14 @@ button{
   border-radius:10px;
   max-height:80vh;
   overflow:auto;
+}
+
+/* ARAMA SONUÇ MESAJ */
+#noResult{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+  display:none;
 }
 </style>
 </head>
@@ -169,48 +166,41 @@ button{
 
 <div class="ad-banner">
   <div class="ad-text">
-    <div class="title">BU ALANA REKLAM VEREBİLİRSİNİZ</div>
-    <div class="sub">Karınca Shop - Yeni Nesil Sistem</div>
+    <div class="title">REKLAM ALANI</div>
+    <div class="sub">Karınca Shop</div>
   </div>
 </div>
 
+<!-- KATEGORİLER (ASLA ETKİLENMEZ) -->
 <div class="categories">
-
-  <div class="cat">Saat</div>
   <div class="cat">Takı</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
-
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
-
   <div class="cat">Elektronik</div>
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
-  <div class="cat">Oyun Konsolu</div>
-  <div class="cat">Aksesuar</div>
+  <div class="cat">Oyun</div>
+</div>
 
-  <div class="cat">Ev & Yaşam</div>
-  <div class="cat">Ayakkabı</div>
-  <div class="cat">Spor</div>
+<!-- ÜRÜNLER -->
+<div class="products" id="productArea">
+
+<div class="card"><h3>iPhone 15</h3><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
+<div class="card"><h3>Samsung S24</h3><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
+<div class="card"><h3>MacBook Pro</h3><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming PC</h3><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
+<div class="card"><h3>AirPods</h3><button onclick="add('AirPods')">Sepete Ekle</button></div>
 
 </div>
 
-<div class="products">
+<div id="noResult">❌ Ürün bulunamadı</div>
 
-<div class="card"><h3>iPhone 15</h3><p>Yeni Nesil</p><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
-<div class="card"><h3>Samsung S24</h3><p>Amiral Gemisi</p><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
-<div class="card"><h3>MacBook Pro</h3><p>Profesyonel</p><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
-<div class="card"><h3>Gaming PC</h3><p>Yüksek Performans</p><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
-<div class="card"><h3>AirPods</h3><p>Ses Kalitesi</p><button onclick="add('AirPods')">Sepete Ekle</button></div>
-<div class="card"><h3>Gaming Mouse</h3><p>Hassas Kontrol</p><button onclick="add('Gaming Mouse')">Sepete Ekle</button></div>
-<div class="card"><h3>RGB Klavye</h3><p>Işık Efektli</p><button onclick="add('RGB Klavye')">Sepete Ekle</button></div>
-
-</div>
-
+<!-- SEPET -->
 <div id="cart">
 <h3>Sepet</h3>
 <ul id="list"></ul>
@@ -234,28 +224,37 @@ function render(){
   });
 }
 
-/* 🔥 ENTER FIX (KATEGORİLER KAYBOLMASIN DİYE) */
+/* 🔥 GELİŞMİŞ ARAMA SİSTEMİ */
 const input = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
+const noResult = document.getElementById("noResult");
 
 function search(){
-  let val = input.value.toLowerCase();
+  let val = input.value.toLowerCase().trim();
+  let visibleCount = 0;
 
   cards.forEach(card=>{
     let text = card.innerText.toLowerCase();
-    card.style.display = text.includes(val) ? "block" : "none";
+
+    if(val === "" || text.includes(val)){
+      card.style.display = "block";
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+    }
   });
+
+  noResult.style.display = visibleCount === 0 ? "block" : "none";
 }
 
-/* ENTER SADECE DURDURUR, FİLTRE BOZMAZ */
+/* ENTER + LIVE SEARCH */
 input.addEventListener("keydown", function(e){
   if(e.key === "Enter"){
-    e.preventDefault();   // SAYFA DAVRANIŞINI ENGELLER
-    search();             // sadece filtre uygular
+    e.preventDefault();
+    search();
   }
 });
 
-/* YAZARKEN ANINDA ARAMA */
 input.addEventListener("input", search);
 </script>
 
