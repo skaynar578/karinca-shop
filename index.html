@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karınca</title>
-
 <style>
 body{
   margin:0;
@@ -12,7 +11,6 @@ body{
   background:#0b0b0b;
   color:white;
 }
-
 /* HEADER */
 header{
   background:#000;
@@ -20,23 +18,20 @@ header{
   text-align:center;
   border-bottom:2px solid #222;
 }
-
 .logo{
   font-size:32px;
   font-weight:bold;
   display:inline-block;
-  transform:translateX(-30px); /* KARINCA sola */
+  transform:translateX(-30px);
 }
-
 .logo span{
   display:block;
   font-size:16px;
   color:#e6b800;
   margin-top:6px;
   letter-spacing:2px;
-  transform:translateX(20px); /* ALT YAZI sağa */
+  transform:translateX(20px);
 }
-
 /* AD */
 .ad-banner{
   width:100%;
@@ -45,7 +40,6 @@ header{
   overflow:hidden;
   border-bottom:1px solid #222;
 }
-
 .ad-text{
   position:absolute;
   inset:0;
@@ -56,17 +50,14 @@ header{
   background:rgba(0,0,0,0.45);
   font-weight:bold;
 }
-
 .ad-text .title{
   color:#e6b800;
   font-size:20px;
 }
-
 .ad-text .sub{
   font-size:13px;
   color:#ccc;
 }
-
 /* CATEGORIES */
 .categories{
   display:flex;
@@ -76,15 +67,18 @@ header{
   padding:12px;
   background:#111;
 }
-
 .cat{
   padding:10px 14px;
   background:#1c1c1c;
   border-radius:20px;
   font-size:14px;
   cursor:pointer;
+  transition:0.2s;
 }
-
+.cat:hover{
+  background:#e6b800;
+  color:#000;
+}
 /* PRODUCTS */
 .products{
   display:grid;
@@ -92,7 +86,6 @@ header{
   gap:15px;
   padding:15px;
 }
-
 .card{
   background:#151515;
   padding:18px;
@@ -100,20 +93,24 @@ header{
   text-align:center;
   transition:0.2s;
 }
-
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:12px;
+}
 .card h3{
   font-size:18px;
+  margin:8px 0;
 }
-
 .card p{
   font-size:14px;
   color:#bbb;
 }
-
 .card:hover{
   transform:scale(1.03);
 }
-
 button{
   background:#e6b800;
   border:none;
@@ -125,7 +122,6 @@ button{
   border-radius:8px;
   font-size:14px;
 }
-
 /* CART */
 #cart{
   position:fixed;
@@ -138,38 +134,30 @@ button{
   max-height:80vh;
   overflow:auto;
 }
-
 /* MOBİL */
 @media (max-width:768px){
-
   .logo{
     font-size:24px;
     transform:translateX(-15px);
   }
-
   .logo span{
     font-size:14px;
     transform:translateX(10px);
   }
-
   .cat{
     font-size:13px;
     padding:10px 12px;
   }
-
   .card{
     padding:16px;
   }
-
   .card h3{
     font-size:16px;
   }
-
   button{
     font-size:15px;
     padding:14px;
   }
-
   #cart{
     position:static;
     width:95%;
@@ -178,7 +166,6 @@ button{
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -200,27 +187,25 @@ button{
   <div class="cat">Saat</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
-
-
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
-
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
-
   <div class="cat">Ev & Yaşam</div>
   <div class="cat">Ayakkabı</div>
   <div class="cat">Spor</div>
 </div>
 
-
+<div class="products" id="products">
+  <!-- Ürünler buraya eklendi -->
+</div>
 
 <div id="cart">
-<h3>Sepet</h3>
-<ul id="list"></ul>
+  <h3>Sepet</h3>
+  <ul id="list"></ul>
 </div>
 
 <script>
@@ -240,7 +225,48 @@ function render(){
     list.appendChild(li);
   });
 }
+
+// Örnek Ürünler
+const products = [
+  {name:"Altın Kolye", category:"Takı", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Gümüş Bileklik", category:"Takı", img:"https://picsum.photos/id/251/300/300"},
+  {name:"Rolex Tarzı Saat", category:"Saat", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Deri Kol Saati", category:"Saat", img:"https://picsum.photos/id/180/300/300"},
+  {name:"Siyah Omuz Çantası", category:"Çanta", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Kırmızı Clutch", category:"Çanta", img:"https://picsum.photos/id/251/300/300"},
+  {name:"Matte Ruj Seti", category:"Kozmetik", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Fondöten + Makyaj Paleti", category:"Kozmetik", img:"https://picsum.photos/id/180/300/300"},
+  {name:"Lace Sütyen Takımı", category:"İç Giyim", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Kadın Elbise", category:"Kadın Giyim", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Kot Ceket", category:"Erkek Giyim", img:"https://picsum.photos/id/180/300/300"},
+  {name:"Çocuk Sweatshirt", category:"Çocuk Giyim", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Bebek Tulumu", category:"Bebek Giyim", img:"https://picsum.photos/id/251/300/300"},
+  {name:"iPhone 16 Kılıf + Ekran Koruyucu", category:"Telefon", img:"https://picsum.photos/id/180/300/300"},
+  {name:"Gaming Laptop", category:"Bilgisayar", img:"https://picsum.photos/id/201/300/300"},
+  {name:"Modern Lamba", category:"Ev & Yaşam", img:"https://picsum.photos/id/251/300/300"},
+  {name:"Beyaz Spor Ayakkabı", category:"Ayakkabı", img:"https://picsum.photos/id/180/300/300"},
+  {name:"Koşu Ayakkabısı", category:"Spor", img:"https://picsum.photos/id/201/300/300"}
+];
+
+function loadProducts(){
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${product.img}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.category}</p>
+      <button onclick="add('${product.name}')">Sepete Ekle</button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+window.onload = loadProducts;
 </script>
 
 </body>
-</html> 
+</html>
