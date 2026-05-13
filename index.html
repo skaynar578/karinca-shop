@@ -13,7 +13,7 @@ body{
   color:white;
 }
 
-/* HEADER (DOKUNULMADI) */
+/* HEADER */
 header{
   background:#000;
   padding:22px;
@@ -25,7 +25,7 @@ header{
   font-size:32px;
   font-weight:bold;
   display:inline-block;
-  transform:translateX(-30px);
+  transform:translateX(-30px); /* KARINCA sola */
 }
 
 .logo span{
@@ -34,7 +34,7 @@ header{
   color:#e6b800;
   margin-top:6px;
   letter-spacing:2px;
-  transform:translateX(20px);
+  transform:translateX(20px); /* ALT YAZI sağa */
 }
 
 /* AD */
@@ -67,7 +67,7 @@ header{
   color:#ccc;
 }
 
-/* ÜST KATEGORİLER (AYNEN) */
+/* CATEGORIES */
 .categories{
   display:flex;
   flex-wrap:wrap;
@@ -85,22 +85,45 @@ header{
   cursor:pointer;
 }
 
-/* ALT VİTRİN */
-.bottom{
+/* PRODUCTS */
+.products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
   padding:15px;
-  background:#0f0f0f;
-  margin-top:10px;
 }
 
-.item{
-  background:#1c1c1c;
-  border-radius:14px;
+.card{
+  background:#151515;
   padding:18px;
+  border-radius:14px;
   text-align:center;
+  transition:0.2s;
+}
+
+.card h3{
+  font-size:18px;
+}
+
+.card p{
+  font-size:14px;
+  color:#bbb;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+button{
+  background:#e6b800;
+  border:none;
+  padding:12px;
+  width:100%;
+  margin-top:12px;
   font-weight:bold;
+  cursor:pointer;
+  border-radius:8px;
+  font-size:14px;
 }
 
 /* CART */
@@ -116,7 +139,9 @@ header{
   overflow:auto;
 }
 
+/* MOBİL */
 @media (max-width:768px){
+
   .logo{
     font-size:24px;
     transform:translateX(-15px);
@@ -127,13 +152,55 @@ header{
     transform:translateX(10px);
   }
 
+  .cat{
+    font-size:13px;
+    padding:10px 12px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .card h3{
+    font-size:16px;
+  }
+
+  button{
+    font-size:15px;
+    padding:14px;
+  }
+
   #cart{
     position:static;
     width:95%;
     margin:10px auto;
   }
 }
-</style>
+</style>.bottom-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  padding:15px;
+  background:#0f0f0f;
+}
+
+.box{
+  background:#1c1c1c;
+  border-radius:14px;
+  overflow:hidden;
+  text-align:center;
+}
+
+.box img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+}
+
+.box div{
+  padding:10px;
+  font-weight:bold;
+}
 </head>
 
 <body>
@@ -152,41 +219,57 @@ header{
   </div>
 </div>
 
-<!-- ÜST KATEGORİ (DEĞİŞMEDİ) -->
 <div class="categories">
   <div class="cat">Takı</div>
   <div class="cat">Saat</div>
   <div class="cat">Çanta</div>
   <div class="cat">Kozmetik</div>
+
+
   <div class="cat">İç Giyim</div>
   <div class="cat">Kadın Giyim</div>
   <div class="cat">Erkek Giyim</div>
   <div class="cat">Çocuk Giyim</div>
   <div class="cat">Bebek Giyim</div>
+
   <div class="cat">Telefon</div>
   <div class="cat">Bilgisayar</div>
+
   <div class="cat">Ev & Yaşam</div>
   <div class="cat">Ayakkabı</div>
   <div class="cat">Spor</div>
 </div>
 
-<!-- ALT VİTRİN (SADECE İSİMLER) -->
-<div class="bottom">
+<!-- GÖRSEL VİTRİN (ALT KISIM) -->
+<div class="bottom-grid">
 
-  <div class="item">Takı</div>
-  <div class="item">Saat</div>
-  <div class="item">Çanta</div>
-  <div class="item">Kozmetik</div>
-  <div class="item">İç Giyim</div>
-  <div class="item">Kadın Giyim</div>
-  <div class="item">Erkek Giyim</div>
-  <div class="item">Çocuk Giyim</div>
-  <div class="item">Bebek Giyim</div>
-  <div class="item">Telefon</div>
-  <div class="item">Bilgisayar</div>
-  <div class="item">Ev & Yaşam</div>
-  <div class="item">Ayakkabı</div>
-  <div class="item">Spor</div>
+  <div class="box"><img src="https://images.unsplash.com/photo-1520975682031-a4c5c8bca5e2"><div>Takı</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3"><div>Saat</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"><div>Çanta</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883"><div>Kozmetik</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf"><div>İç Giyim</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1520975958225-ef7b2d7a3a1d"><div>Kadın Giyim</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990"><div>Erkek Giyim</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1503944583220-79d8926ad5e2"><div>Çocuk Giyim</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1581579185169-5b64c2b1a1c3"><div>Bebek Giyim</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"><div>Telefon</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"><div>Bilgisayar</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1505692794403-34d4982c6d89"><div>Ev & Yaşam</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"><div>Ayakkabı</div></div>
+
+  <div class="box"><img src="https://images.unsplash.com/photo-1528701800489-20be3c7e7a0f"><div>Spor</div></div>
 
 </div>
 
@@ -195,5 +278,24 @@ header{
 <ul id="list"></ul>
 </div>
 
+<script>
+let cart = [];
+
+function add(name){
+  cart.push(name);
+  render();
+}
+
+function render(){
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+  cart.forEach(i=>{
+    let li = document.createElement("li");
+    li.innerText = i;
+    list.appendChild(li);
+  });
+}
+</script>
+
 </body>
-</html>
+</html> 
