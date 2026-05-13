@@ -25,7 +25,7 @@ header{
   font-size:32px;
   font-weight:bold;
   display:inline-block;
-  transform:translateX(-30px);
+  transform:translateX(-30px); /* KARINCA sola */
 }
 
 .logo span{
@@ -34,7 +34,7 @@ header{
   color:#e6b800;
   margin-top:6px;
   letter-spacing:2px;
-  transform:translateX(20px);
+  transform:translateX(20px); /* ALT YAZI sağa */
 }
 
 /* AD */
@@ -72,38 +72,58 @@ header{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  gap:12px;
+  gap:10px;
   padding:12px;
   background:#111;
 }
 
 .cat{
+  padding:10px 14px;
   background:#1c1c1c;
-  border-radius:14px;
-  overflow:hidden;
+  border-radius:20px;
+  font-size:14px;
   cursor:pointer;
-  width:160px;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+  padding:15px;
+}
+
+.card{
+  background:#151515;
+  padding:18px;
+  border-radius:14px;
   text-align:center;
   transition:0.2s;
 }
 
-.cat:hover{
-  transform:scale(1.05);
+.card h3{
+  font-size:18px;
 }
 
-.cat img{
-  width:100%;
-  height:100px;
-  object-fit:cover;
-  display:block;
-}
-
-.cat span{
-  display:block;
-  padding:10px;
+.card p{
   font-size:14px;
+  color:#bbb;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+button{
+  background:#e6b800;
+  border:none;
+  padding:12px;
+  width:100%;
+  margin-top:12px;
   font-weight:bold;
-  color:#fff;
+  cursor:pointer;
+  border-radius:8px;
+  font-size:14px;
 }
 
 /* CART */
@@ -133,7 +153,21 @@ header{
   }
 
   .cat{
-    width:45%;
+    font-size:13px;
+    padding:10px 12px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .card h3{
+    font-size:16px;
+  }
+
+  button{
+    font-size:15px;
+    padding:14px;
   }
 
   #cart{
@@ -162,47 +196,34 @@ header{
 </div>
 
 <div class="categories">
+  <div class="cat">Takı</div>
+  <div class="cat">Çanta</div>
+  <div class="cat">Kozmetik</div>
+  <div class="cat">Saat</div>
 
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?1">
-    <span>Takı</span>
-  </div>
+  <div class="cat">İç Giyim</div>
+  <div class="cat">Kadın Giyim</div>
+  <div class="cat">Erkek Giyim</div>
+  <div class="cat">Çocuk Giyim</div>
+  <div class="cat">Bebek Giyim</div>
 
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?2">
-    <span>Saat</span>
-  </div>
+  <div class="cat">Elektronik</div>
+  <div class="cat">Telefon</div>
+  <div class="cat">Bilgisayar</div>
+  <div class="cat">Oyun Konsolu</div>
+  <div class="cat">Aksesuar</div>
 
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?3">
-    <span>Kadın Giyim</span>
-  </div>
+  <div class="cat">Ev & Yaşam</div>
+  <div class="cat">Ayakkabı</div>
+  <div class="cat">Spor</div>
+</div>
 
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?4">
-    <span>Erkek Giyim</span>
-  </div>
-
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?5">
-    <span>Elektronik</span>
-  </div>
-
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?6">
-    <span>Ayakkabı</span>
-  </div>
-
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?7">
-    <span>Çanta</span>
-  </div>
-
-  <div class="cat">
-    <img src="https://picsum.photos/300/200?8">
-    <span>Kozmetik</span>
-  </div>
-
+<div class="products">
+<div class="card"><h3>iPhone 15</h3><p>Yeni Nesil</p><button onclick="add('iPhone 15')">Sepete Ekle</button></div>
+<div class="card"><h3>Samsung S24</h3><p>Amiral Gemisi</p><button onclick="add('Samsung S24')">Sepete Ekle</button></div>
+<div class="card"><h3>MacBook Pro</h3><p>Profesyonel</p><button onclick="add('MacBook Pro')">Sepete Ekle</button></div>
+<div class="card"><h3>Gaming PC</h3><p>Yüksek Performans</p><button onclick="add('Gaming PC')">Sepete Ekle</button></div>
+<div class="card"><h3>AirPods</h3><p>Ses Kalitesi</p><button onclick="add('AirPods')">Sepete Ekle</button></div>
 </div>
 
 <div id="cart">
@@ -230,4 +251,4 @@ function render(){
 </script>
 
 </body>
-</html>
+</html> 
